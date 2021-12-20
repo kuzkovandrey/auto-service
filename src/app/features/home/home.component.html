@@ -1,0 +1,20 @@
+<section class="home">
+  <h1 class="home__title">
+    Auto service online
+  </h1>
+  <p class="home__description">
+    Here you can leave a request for the repair of your car
+  </p>
+  <button
+    color="primary"
+    class="home__button"
+    (click)="navigateTo(appRoutes.ORDER)"
+    mat-raised-button>
+    Get started
+  </button>
+  <button
+    class="home__button"
+    (click)="navigateTo(appRoutes.ADMIN)"
+    mat-raised-button>Admin
+  </button>
+</section>

@@ -1,0 +1,58 @@
+@import 'variables';
+
+.order {
+  &__button {
+    margin: 20px 40px;
+    background-color: $primary;
+    color: $white-text;
+    padding: 5px 30px;
+    width: 400px;
+  }
+}
+
+.header {
+  background-color: $primary;
+
+  &__title {
+    padding: 15px 30px;
+    color: $white-text;
+  }
+}
+
+.current-client {
+  margin: 20px;
+
+  &__name {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  &__date {
+    text-align: center;
+  }
+}
+
+.form {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__input {
+    width: 400px;
+  }
+
+  &__title {
+    margin-bottom: 20px;
+  }
+}
+
+.service {
+  margin: 10px;
+
+  &__price {
+    margin-left: 10px;
+    font-weight: 700;
+  }
+}
+

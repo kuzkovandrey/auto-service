@@ -1,0 +1,35 @@
+@import 'variables';
+
+.auth {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__header {
+    position: absolute;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    top: 0;
+    width: 100%;
+  }
+
+  &__form {
+    height: 400px;
+    width: 400px;
+    border: 1px solid $light;
+  }
+}
+
+.header {
+  background-color: $primary;
+
+  &__title {
+    padding: 15px;
+    color: $white-text;
+  }
+}
+
+

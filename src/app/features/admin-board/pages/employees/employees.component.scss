@@ -1,0 +1,35 @@
+@import 'variables';
+
+.employees {
+  padding: 20px;
+  background-color: $secondary;
+
+  &__title {
+    margin: 20px 0;
+  }
+
+  &__label {
+    font-size: 14px;
+  }
+
+  &__list {
+
+  }
+}
+
+.form {
+  &__input {
+    margin-right: 10px;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.card {
+  &__title {
+    opacity: 0.9;
+    font-weight: 500;
+  }
+}

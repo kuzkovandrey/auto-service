@@ -1,0 +1,16 @@
+@import 'variables';
+
+.orders {
+  padding: 20px;
+  background-color: $secondary;
+
+  &__title {
+    margin-bottom: 20px;
+  }
+}
+
+.form {
+  &__input {
+    margin-right: 10px;
+  }
+}

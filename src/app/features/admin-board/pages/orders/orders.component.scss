@@ -1,0 +1,28 @@
+@import 'variables';
+
+.orders {
+  padding: 20px;
+  background-color: $secondary;
+
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  &__button {
+    margin-left: 20px;
+  }
+}
+
+.form {
+  &__input {
+    margin-right: 10px;
+  }
+}
+
+.card {
+
+  &__title {
+    opacity: 0.8;
+    font-weight: 500;
+  }
+}

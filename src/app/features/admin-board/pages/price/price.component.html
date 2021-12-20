@@ -1,0 +1,38 @@
+<div class="orders">
+  <h3 class="orders__title">Price list</h3>
+
+  <mat-card *ngFor="let price of priceList$ | async" class="card">
+    <div class="card__description">
+      <div>
+        <h4>{{price.description}}</h4>
+        <p>{{price.cost}}$</p>
+      </div>
+      <button
+        (click)="deletePrice(price._id)"
+        class="card__button"
+        mat-raised-button
+        color="warn">
+        Remove
+      </button>
+    </div>
+  </mat-card>
+
+  <div [formGroup]="priceForm" class="form">
+    <mat-form-field class="form__input" appearance="fill">
+      <mat-label>Description</mat-label>
+      <input formControlName="description" type="text" matInput required>
+    </mat-form-field>
+    <mat-form-field class="form__input" appearance="fill">
+      <mat-label>Cost</mat-label>
+      <input formControlName="cost" type="number" matInput required>
+    </mat-form-field>
+    <button
+      (click)="createPrice()"
+      [disabled]="priceForm.invalid"
+      type="submit"
+      mat-raised-button
+      color="primary">
+      Add
+    </button>
+  </div>
+</div>

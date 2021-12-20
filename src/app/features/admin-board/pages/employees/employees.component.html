@@ -1,0 +1,140 @@
+<div class="employees">
+
+  <h3 class="employees__title">All employees</h3>
+
+  <mat-card class="card" *ngFor="let emloyee of employees$ | async">
+    <div class="card__description">
+      <div>
+        <h4>Person: {{ emloyee.name }}</h4>
+        <p>Rate: {{ emloyee.rate }}</p>
+      </div>
+      <div>
+          <button
+          (click)="cardForm.classList.toggle('hide')"
+          class="card__button"
+          mat-button
+          color="primary">
+          Change
+        </button>
+        <button
+          (click)="deleteEmployee(emloyee._id)"
+          class="card__button"
+          mat-raised-button
+          color="warn">
+          Remove
+        </button>
+      </div>
+    </div>
+    <div #cardForm class="card__form hide">
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Name</mat-label>
+        <input #name type="text" matInput>
+      </mat-form-field>
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Rate</mat-label>
+        <input #rate type="number" matInput>
+      </mat-form-field>
+      <button
+        (click)="changeEmployeeInfo(emloyee._id, name.value, +rate.value)"
+        type="button"
+        mat-raised-button
+        color="primary">
+        Change
+      </button>
+    </div>
+  </mat-card>
+
+  <h3 class="employees__title">Add employees</h3>
+
+  <form [formGroup]="employeeForm" class="form">
+    <mat-form-field class="form__input" appearance="fill">
+      <mat-label>Name</mat-label>
+      <input formControlName="name" type="text" matInput required>
+    </mat-form-field>
+    <mat-form-field class="form__input" appearance="fill">
+      <mat-label>Rate</mat-label>
+      <input formControlName="rate" type="number" matInput required>
+    </mat-form-field>
+    <button
+      [disabled]="employeeForm.invalid"
+      (click)="createEmployee()"
+      type="submit"
+      mat-raised-button
+      color="primary">
+      Add
+    </button>
+  </form>
+
+  <h3 class="employees__title">Get employee orders</h3>
+
+  <form [formGroup]="salaryForm" class="form">
+
+    <mat-form-field class="form__input" appearance="fill">
+      <mat-label>Employee</mat-label>
+      <select formControlName="employee" matNativeControl required>
+        <option
+          *ngFor="let emloyee of employees$ | async"
+          [value]="emloyee._id">
+          {{ emloyee.name }}
+        </option>
+      </select>
+    </mat-form-field>
+
+    <mat-form-field class="form__input" appearance="fill">
+      <mat-label>Year</mat-label>
+      <select formControlName="year" matNativeControl required>
+        <option
+          *ngFor="let year of years"
+          [value]="year">
+          {{ year }}
+        </option>
+      </select>
+    </mat-form-field>
+
+    <mat-form-field class="form__input" appearance="fill">
+      <mat-label>Month</mat-label>
+      <select formControlName="month" matNativeControl required>
+        <option
+          *ngFor="let month of months; let idx = index"
+          [value]="idx + 1">
+          {{ month }}
+        </option>
+      </select>
+    </mat-form-field>
+
+    <button
+      (click)="getPersonalOrders()"
+      [disabled]="salaryForm.invalid"
+      type="button"
+      mat-raised-button
+      color="primary">
+      Get and calculate
+    </button>
+  </form>
+
+  <ng-template [ngIf]="currentCalary">
+    <h4 class="employees__title">Total salary by month: {{currentCalary}} $</h4>
+  </ng-template>
+
+  <ng-template [ngIf]="personalOrders.length">
+    <h4 class="employees__title">Employee orders:</h4>
+  </ng-template>
+
+  <mat-card class="card" *ngFor="let order of personalOrders">
+    <p class="card__title">Date: {{ order.date }}</p>
+    <p class="card__title">Order id: {{order.orderId}}</p>
+    <p class="card__title">Client:</p>
+    <p>
+      email: {{order.client.email}},
+      name: {{order.client.name}}
+    </p>
+    <p class="card__title">Car:</p>
+    <p>
+      state number: {{order.car.stateNumber}},
+      model: {{order.car.model}},
+      year: {{ order.car.year}}
+    </p>
+    <p class="card__title">Cost for order: {{ order.cost }}</p>
+  </mat-card>
+
+</div>

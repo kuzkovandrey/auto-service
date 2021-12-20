@@ -1,0 +1,110 @@
+<div class="order">
+  <header class="header">
+    <h3 class="header__title">New Order</h3>
+  </header>
+  <div class="current-client">
+    <p class="current-client__date">Date: {{ currentDate | date:'fullDate' }}</p>
+  </div>
+
+  <form [formGroup]="form" class="form">
+
+    <h4 class="form__title">User info</h4>
+
+    <div class="form" formGroupName="client">
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Name</mat-label>
+        <input #nameInput formControlName="name" matInput required>
+        <mat-error *ngIf="form.get('client').get('name').invalid">
+          Input is empty input. Min length is 4 symbols.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput required>
+        <mat-error *ngIf="form.get('client').get('email').invalid">
+          Email is invalid.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <h4 class="form__title">Car info</h4>
+
+    <div class="form" formGroupName="car">
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>State Number</mat-label>
+        <input formControlName="stateNumber" matInput required>
+        <mat-error *ngIf="form.get('car').get('stateNumber').invalid">
+          Example: 7552 KA-5
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Model</mat-label>
+        <input formControlName="model" matInput required>
+        <mat-error *ngIf="form.get('car').get('model').invalid">
+          Min length - 3 symbols
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Year</mat-label>
+        <input formControlName="year" matInput required>
+        <mat-error *ngIf="form.get('car').get('model').invalid">
+          Example: 2005
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <h4 class="form__title">Employee choice</h4>
+
+    <mat-form-field class="form__input" appearance="fill">
+      <mat-label>Employee</mat-label>
+      <select formControlName="personId" matNativeControl required>
+        <option
+          *ngFor="let employee of employees$ | async"
+          [value]="employee._id">
+          {{ employee.name }}
+        </option>
+      </select>
+    </mat-form-field>
+
+    <h4 class="form__title">Choose service</h4>
+
+    <mat-form-field class="form__input" appearance="fill">
+      <mat-label>Service</mat-label>
+      <select formControlName="priceListId" matNativeControl required>
+        <option
+          *ngFor="let price of priceList$ | async"
+          [value]="price._id">
+          {{ price.description }} - {{ price.cost }}$
+        </option>
+      </select>
+    </mat-form-field>
+
+    <h4 class="form__title">Choose replacing parts</h4>
+
+    <mat-form-field class="form__input" appearance="fill">
+      <mat-label>Parts for replacing</mat-label>
+      <mat-select  formControlName="partsId" multiple>
+        <mat-option
+          *ngFor="let part of parts$ | async"
+          [value]="part._id">
+          {{part.name}} - {{ part.cost }}$
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <h3 class="form__title">Total price: {{ totalPrice }}$</h3>
+
+    <button
+      [disabled]="form.invalid"
+      (click)="sendOrder()"
+      type="submit"
+      class="order__button"
+      mat-button>
+      Send Order
+    </button>
+  </form>
+
+</div>

@@ -1,0 +1,55 @@
+<div class="orders">
+  <h3 class="orders__title"> Choose date range</h3>
+
+  <form class="form" [formGroup]="searchForm">
+    <mat-form-field class="form__input" appearance="fill">
+      <mat-label>Year</mat-label>
+      <select formControlName="year" matNativeControl required>
+        <option
+          *ngFor="let year of years"
+          [value]="year">
+          {{ year }}
+        </option>
+      </select>
+    </mat-form-field>
+
+    <mat-form-field class="form__input" appearance="fill">
+      <mat-label>Month</mat-label>
+      <select formControlName="month" matNativeControl required>
+        <option
+          *ngFor="let month of months; let idx = index"
+          [value]="idx + 1">
+          {{ month }}
+        </option>
+      </select>
+    </mat-form-field>
+
+    <button
+      (click)="searchOrders()"
+      [disabled]="searchForm.invalid"
+      class="orders__button"
+      mat-raised-button
+      color="warn">
+      Search
+    </button>
+  </form>
+
+  <div class="order-list">
+    <mat-card class="card" *ngFor="let order of orders">
+      <p class="card__title">Date: {{ order.date }}</p>
+      <p class="card__title">Order id: {{order.orderId}}</p>
+      <p class="card__title">Client:</p>
+      <p>
+        email: {{order.client.email}},
+        name: {{order.client.name}}
+      </p>
+      <p class="card__title">Car:</p>
+      <p>
+        state number: {{order.car.stateNumber}},
+        model: {{order.car.model}},
+        year: {{ order.car.year}}
+      </p>
+      <p class="card__title">Cost for order: {{order.cost}}</p>
+    </mat-card>
+  </div>
+</div>

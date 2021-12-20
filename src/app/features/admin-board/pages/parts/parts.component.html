@@ -1,0 +1,36 @@
+<div class="parts">
+  <h3 class="parts__title">Parts</h3>
+  <mat-card *ngFor="let part of parts$ | async" class="card">
+    <div class="card__description">
+      <div>
+        <h4>{{part.name}}</h4>
+        <p>{{part.cost}}$</p>
+      </div>
+      <button
+        (click)="deletePart(part._id)"
+        class="card__button"
+        mat-raised-button
+        color="warn">
+        Remove
+      </button>
+    </div>
+  </mat-card>
+  <div [formGroup]="form" class="parts-form">
+    <mat-form-field class="parts-form__input" appearance="fill">
+      <mat-label>Name</mat-label>
+      <input formControlName="name" type="text" matInput required>
+    </mat-form-field>
+    <mat-form-field class="parts-form__input" appearance="fill">
+      <mat-label>Cost</mat-label>
+      <input formControlName="cost" type="number" matInput required>
+    </mat-form-field>
+    <button
+      (click)="createPart()"
+      [disabled]="form.invalid"
+      type="submit"
+      mat-raised-button
+      color="primary">
+      Add
+    </button>
+  </div>
+</div>

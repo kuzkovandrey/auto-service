@@ -1,0 +1,12 @@
+<div class="auth">
+  <header class="auth__header header">
+    <h3 class="header__title">Auth page</h3>
+  </header>
+  <mat-tab-group mat-align-tabs="center" class="auth__form">
+    <mat-tab label="Sign in">
+      <login-form
+        (onClickButton)="login($event)">
+      </login-form>
+    </mat-tab>
+  </mat-tab-group>
+</div>

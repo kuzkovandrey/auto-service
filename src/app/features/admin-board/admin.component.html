@@ -1,0 +1,37 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Admin page</span>
+    <mat-toolbar-row class="buttons">
+      <button
+        class="button"
+        mat-button
+        routerLink="employees"
+        routerLinkActive="button--active">
+        Employees
+      </button>
+      <button
+        class="button"
+        mat-button
+        routerLink="price"
+        routerLinkActive="button--active">
+        Price
+      </button>
+      <button
+        class="button"
+        mat-button
+        routerLink="parts"
+        routerLinkActive="button--active">
+        Parts
+      </button>
+      <button
+        class="button"
+        mat-button
+        routerLink="orders"
+        routerLinkActive="button--active">
+        Orders
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

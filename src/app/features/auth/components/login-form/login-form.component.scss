@@ -1,0 +1,29 @@
+@import 'variables';
+
+.form {
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__input {
+    width: 80%;
+  }
+
+  &__button {
+    margin-top: 40px;
+    width: 80%;
+    color: $white-text;
+    background-color: $primary;
+  }
+
+  &__warning {
+    margin-top: 20px;
+    color: $dark;
+    font-size: 14px;
+  }
+
+
+
+}
